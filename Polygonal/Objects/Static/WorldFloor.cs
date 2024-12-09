@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Polygonal.Objects.Static;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +10,65 @@ namespace Polygonal.Objects
 {
     public class WorldFloor : Object
     {
-        public WorldFloor(Vector3 Position)
+        public WorldFloor(Vector3 Position, World World)
         {
             this.Position = Position;
             this.Faces = new List<ObjectFace>();
 
             Vector2 Dimentions = new Vector2(50,50);
-            Vector2 TileDimentions = new Vector2(2,2);
+            Vector2 TileDimentions = new Vector2(1,1);
 
             Vector3 ColorDefault = new Vector3(134, 0, 179);//(0,204,0);
             Point TintRange = new Point(-50, 50);
-            
 
+            generateFloor(World, Position, Dimentions, TileDimentions, ColorDefault, TintRange);
+        }
+
+        private void generateFloor(World World, Vector3 Position, Vector2 Dimentions, Vector2 TileDimentions, Vector3 ColorDefault, Point TintRange)
+        {
+            // Generate Floor
             for (int Y = 0; Y < Dimentions.Y; Y++)
             {
                 for (int X = 0; X < Dimentions.X; X++)
                 {
                     Vector3 ColVect = getTileColor(ColorDefault, TintRange);
-                    Color Col = new Color((int)ColVect.X, (int)ColVect.Y, (int)ColVect.Z);
-                    Vector3 Origin = new Vector3(
+
+                    Vector3 WorldPosition = new Vector3(
                         Position.X + (X * TileDimentions.X),
                         Position.Y + (Y * TileDimentions.Y),
                         Position.Z
                         );
 
-                    Faces.Add( new ObjectFace(
-                        new Vector3(Origin.X + TileDimentions.X, Origin.Y, Origin.Z),
-                        new Vector3(Origin.X, Origin.Y + TileDimentions.Y, Origin.Z),
-                        new Vector3(Origin.X, Origin.Y, Origin.Z),
-                        new Color((int)ColVect.X, (int)ColVect.Y, (int)ColVect.Z)) );
-                    Faces.Add(new ObjectFace(
-                        new Vector3(Origin.X + TileDimentions.X, Origin.Y + TileDimentions.Y, Origin.Z),
-                        new Vector3(Origin.X, Origin.Y + TileDimentions.Y, Origin.Z),
-                        new Vector3(Origin.X + TileDimentions.X, Origin.Y, Origin.Z),
-                        new Color((int)ColVect.X, (int)ColVect.Y, (int)ColVect.Z)));
+                    Vector3 Point1 = new Vector3(
+                        0,
+                        0,
+                        0
+                        );
+                    Vector3 Point2 = new Vector3(
+                        TileDimentions.X,
+                        0,
+                        0
+                        );
+                    Vector3 Point3 = new Vector3(
+                        0,
+                        TileDimentions.Y,
+                        0
+                        );
+                    Vector3 Point4 = new Vector3(
+                        TileDimentions.X,
+                        TileDimentions.Y,
+                        0
+                        );
+
+
+                    World.objects.Add(new FlatFace(
+                        WorldPosition,
+                        new Color((int)ColVect.X, (int)ColVect.Y, (int)ColVect.Z),
+                        Point1,
+                        Point2,
+                        Point3,
+                        Point4
+                        ));
                 }
             }
         }

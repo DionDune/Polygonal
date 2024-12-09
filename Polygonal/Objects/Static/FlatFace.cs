@@ -21,14 +21,14 @@ namespace Polygonal.Objects.Static
             }
 
             Faces.Add(new ObjectFace(
-                        Point2,
-                        Point3,
-                        Point1,
+                        new Vector3(Point2.X, Point2.Y, Point2.Z),
+                        new Vector3(Point3.X, Point3.Y, Point3.Z),
+                        new Vector3(Point1.X, Point1.Y, Point1.Z),
                         (Color)Color));
             Faces.Add(new ObjectFace(
-                        Point4,
-                        Point3,
-                        Point2,
+                        new Vector3(Point4.X, Point4.Y, Point4.Z),
+                        new Vector3(Point3.X, Point3.Y, Point3.Z),
+                        new Vector3(Point2.X, Point2.Y, Point2.Z),
                         (Color)Color));
         }
     }
