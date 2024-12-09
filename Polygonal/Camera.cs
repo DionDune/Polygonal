@@ -223,6 +223,12 @@ namespace Polygonal
 
             correctRotation();
         }
+        public void Rotate(Vector2 Rotation)
+        {
+            Direction += Rotation;
+
+            correctRotation();
+        }
         private void correctRotation()
         {
             if (Direction.X > 360)

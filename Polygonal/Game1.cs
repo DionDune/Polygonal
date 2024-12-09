@@ -49,6 +49,9 @@ namespace Polygonal
             Camera = new Camera(settings, new Vector3(10, 10, 0));
 
             _basicEffect = new BasicEffect(GraphicsDevice) { VertexColorEnabled = true };
+
+            IsMouseVisible = false;
+
             base.Initialize();
         }
 
@@ -123,7 +126,7 @@ namespace Polygonal
                 Exit();
 
 
-            inputHandler.execute(settings, Camera, _world);
+            inputHandler.execute(settings, Camera, _world, Screen);
             _world.Update();
 
 

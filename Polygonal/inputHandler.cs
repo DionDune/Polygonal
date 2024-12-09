@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,15 @@ namespace Polygonal
 
 
 
-        public void execute(Settings settings, Camera camera, World world)
+        public void execute(Settings settings, Camera camera, World world, Screen _screen)
         {
             List<Keys> CurrentKeys = Keyboard.GetState().GetPressedKeys().ToList();
+
+
+            Point ScreenCentre = new Point(_screen.Position.X + _screen.Dimentions.X / 2, _screen.Position.Y + _screen.Dimentions.Y / 2);
+            Vector2 MouseCentreOffset = new Vector2((float)Mouse.GetState().X - ScreenCentre.X);
+            camera.Rotate(new Vector2(MouseCentreOffset.X / 20f, 0));
+            Mouse.SetPosition(ScreenCentre.X, ScreenCentre.Y);
 
 
 
@@ -75,5 +82,6 @@ namespace Polygonal
             else
                 return null;
         }
+
     }
 }
