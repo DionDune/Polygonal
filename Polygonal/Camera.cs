@@ -188,13 +188,13 @@ namespace Polygonal
         public void MoveLeftward(Settings settings)
         {
             WorldPosition += new Vector3(settings.cameraMovementSpeed * (float)Math.Cos((Direction.X + (FOV.X / 2) - 90) * (Math.PI / 180)),
-                                            settings.cameraMovementSpeed * (float)Math.Sin(Direction.X * (Math.PI / 180)),
+                                            settings.cameraMovementSpeed * (float)Math.Sin((Direction.X + (FOV.X / 2) - 90) * (Math.PI / 180)),
                                             0);
         }
         public void MoveRightward(Settings settings)
         {
             WorldPosition -= new Vector3(settings.cameraMovementSpeed * (float)Math.Cos((Direction.X + (FOV.X / 2) - 90) * (Math.PI / 180)),
-                                            settings.cameraMovementSpeed * (float)Math.Sin(Direction.X * (Math.PI / 180)),
+                                            settings.cameraMovementSpeed * (float)Math.Sin((Direction.X + (FOV.X / 2) - 90) * (Math.PI / 180)),
                                             0);
         }
         public void MoveUpward(Settings settings)
