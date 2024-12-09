@@ -122,10 +122,6 @@ namespace Polygonal
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-
             inputHandler.execute(settings, Camera, _world, Screen);
             _world.Update();
 

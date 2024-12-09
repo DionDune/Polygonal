@@ -34,7 +34,7 @@ namespace Polygonal
 
             EntityHandler = new EntityHandler();
             Atmosphere = new Atmosphere();
-            objects.Add(new WorldFloor(new Vector3(50, 50, 20), this));
+            //objects.Add(new WorldFloor(new Vector3(50, 50, 20), this));
 
 
             genSikeFloor();
